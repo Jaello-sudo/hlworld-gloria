@@ -1,3 +1,6 @@
+import streamlit as st
+
+# Dictionary data
 english_to_german = {
     "hello": "hallo",
     "goodbye": "auf wiedersehen",
@@ -21,10 +24,17 @@ english_to_german = {
     "family": "familie"
 }
 
-print("📘 English to German Dictionary")
-word = input("Enter an English word to translate: ").lower()
+# App title
+st.title("📘 English to German Dictionary")
 
-if word in english_to_german:
-    print(f"The German translation of '{word}' is '{english_to_german[word]}'.")
-else:
-    print("❌ Word not found in dictionary.")
+# Text input
+word = st.text_input("Enter an English word to translate:")
+
+# Button
+if st.button("Translate"):
+    if word.lower() in english_to_german:
+        st.success(
+            f"The German translation of '{word.lower()}' is '{english_to_german[word.lower()]}'"
+        )
+    else:
+        st.error("❌ Word not found in dictionary")
